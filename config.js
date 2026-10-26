@@ -1,4 +1,4 @@
 window.AI27_CONFIG = {
-  sheetId: "1wwOwLqbs7K2bOaHI03-OziyGKMWL_SbA",,
-  gid: "1061841096"
+  sheetId: "1Lj_e5N5yo6IWCimbH1ub9QTVI7O5N3Shzgc8VxTImeA",
+  gid: "0"
 };
