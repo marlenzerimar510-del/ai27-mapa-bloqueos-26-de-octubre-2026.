@@ -11,7 +11,7 @@ async function syncSheet(){
  if(!sheetId || sheetId==='PEGA_AQUI_EL_ID_DE_GOOGLE_SHEETS'){msg.textContent='Configuración pendiente: agrega el ID de tu Google Sheets en config.js';return}
  if(fetching)return;fetching=true;
  try{
-  const url='https://docs.google.com/spreadsheets/d/'+encodeURIComponent(sheetId)+'/export?format=csv&gid='+encodeURIComponent(gid)+'&_='+Date.now();
+  const url='https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_iQv03OEe7GmRChHog86n1hlTJjmjkwbUWxeRwJMKVOnAUiHoq8zWLHMiAOisDRZt5PUKPbIwcPek/pub?output=csv&_='+Date.now();
   const res=await fetch(url,{cache:'no-store'});
   if(!res.ok)throw new Error('No se pudo leer la hoja (HTTP '+res.status+'). Comprueba que esté publicada y que el ID y gid sean correctos.');
   const csv=await res.text();if(csv.trim().startsWith('<!DOCTYPE')||csv.trim().startsWith('<html'))throw new Error('Google devolvió una página HTML. Revisa los permisos de la hoja.');
