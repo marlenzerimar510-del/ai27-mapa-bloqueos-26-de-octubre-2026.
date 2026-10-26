@@ -21,7 +21,7 @@ async function syncSheet(){
   const parsed=rows.map(row=>{const r={};Object.keys(row).forEach(k=>r[norm(k)]=row[k]);const lat=num(getField(r,'LATITUD','LAT','LATITUDE'));const lon=num(getField(r,'LONGITUD','LON','LNG','LONGITUDE'));return {name:getField(r,'PUNTO','NOMBRE','UBICACION'),road:getField(r,'CARRETERA / REFERENCIA','CARRETERA','REFERENCIA','TRAMO'),state:getField(r,'ENTIDAD','ESTADO'),lat:lat!==null&&lat>=-90&&lat<=90?lat:null,lon:lon!==null&&lon>=-180&&lon<=180?lon:null,status:getField(r,'ESTATUS','REPORTE 26/10/2026','REPORTE','CONDICION','STATUS')||'No especificado',url:getField(r,'GOOGLE MAPS','URL','ENLACE','LINK')};}).filter(p=>p.name);
   if(!parsed.length)throw new Error('No se encontró la columna PUNTO/NOMBRE.');
   const payload=JSON.stringify(parsed);
-  if(payload!==lastPayload){points=parsed;active='Todos';updateStats();buildFilters();refresh();reframe();lastPayload=payload}
+  if(payload!==lastPayload){points=parsed;active='Todos';updateStats();buildFilters();refresh();lastPayload=payload}
   msg.textContent='✓ Sincronizado · '+parsed.length+' puntos · '+new Date().toLocaleTimeString('es-MX');
  }catch(e){msg.textContent='⚠ '+e.message+' Se conservan los últimos datos visibles.'}finally{fetching=false}
 }
